@@ -1,6 +1,7 @@
 const loader = new APIManager
-
-
+const storageData = new localStorageData
+const renderer = new Renderer
+renderer.renderUsers(storageData.loadData())
 
 $('#load-btn').click(function () {
     loader.loadUser()
@@ -8,18 +9,19 @@ $('#load-btn').click(function () {
 
 $('#display-btn').click(function () {
     const data = loader.getUser()
-    const renderer = new Renderer(data)
-    renderer.render()
+    renderer.render(data)
 })
 
 $('#save-btn').click(function () {
-    const data = JSON.stringify(loader.getUser())
-    localStorage.data=data
-    console.log(`${loader.getUser().mainUser.name.first}'s data saved to local srorage`);
+    storageData.saveData(loader.getUser())
+    renderer.renderUsers(storageData.loadData())
 })
 
 $('#display-saved-btn').click(function () {
-    const data =JSON.parse(localStorage.data)
-    const renderer = new Renderer(data)
-    renderer.render()
+    const index=$('#saved-users').val()
+    renderer.render(storageData.loadData(index))
 })
+
+
+
+  

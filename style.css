@@ -126,3 +126,7 @@ button {
     padding: 1vw;
     font-size: 1vmax;
 }
+
+.user-select{
+    margin: 10px;
+}

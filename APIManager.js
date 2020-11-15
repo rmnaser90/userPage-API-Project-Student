@@ -2,7 +2,23 @@
 
 class APIManager {
     constructor() {
-        this.data = {}
+        this.data = {
+            mainUser: {},
+            friends: []
+        }
+    }
+    
+    _getMeatQuote() {
+        $.ajax({
+            method: 'GET',
+            url: 'https://baconipsum.com/api/?type=meat-and-filler',
+            success: (response) => {
+            
+                this.data.mainUser.meatQuote = response[Math.floor(Math.random()*5)]
+                console.log('meat quote is loaded')
+            },
+            error: () => console.log('error loading meat quote'),
+        })
     }
 
     _getQuote() {
@@ -23,7 +39,6 @@ class APIManager {
             url: `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*100)}`,
             success: (response) => {
                 console.log('Pokemon is loaded');
-                console.log(response);
                 const name = response.name.split('')[0].toUpperCase()+response.name.split('').slice(1,response.name.lengt).join('') // Capitalize first letter
                 this.data.mainUser.pokemon={name, url: response.sprites.front_shiny}
             },
@@ -39,8 +54,9 @@ class APIManager {
                 console.log('User is Loaded');
                 this.data.mainUser = response.results[0]
                 this.data.friends = response.results.slice(1, 7)
-                this._getQuote()
+                this._getQuote()  // I had to call the rest of methods from here, because user
                 this._getPokemon()
+                this._getMeatQuote()
             },
             error: () => { console.log('error loading Users'); }
         })
