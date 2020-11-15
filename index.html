@@ -18,30 +18,39 @@
              <option value={{index}}>{{mainUser.name.first}} {{mainUser.name.last}}</option>
        {{/each}}
     </script>
-    
+
     <script id="user-template" type="text/x-handlebars-template">
 
         <div class="user-container">
-            <img id="profile-pic" src="{{mainUser.picture.medium}}" alt="">
+            <img id="profile-pic" src="{{mainUser.picture.medium}}" alt="Profile picture">
             <div class="user-info ">
                 {{mainUser.name.first}} {{mainUser.name.last}} <br>
                 {{mainUser.location.city}}, {{mainUser.location.country}}
             </div>
-
         </div>
-        <div class="quote-container">{{mainUser.quote}}</div>
+
+        <div class="quote-container">
+            {{quote}}
+        </div>
+
         <div class="content-container">
             <div class="pokemon-container">
-                <img src="{{mainUser.pokemon.url}}" id="pokemon-image" alt="">
-                <p id="pokemon-text">{{mainUser.pokemon.name}}</p>
+                <img src="{{pokemon.url}}" id="pokemon-image" alt="pokemon picture">
+                <p id="pokemon-text">{{pokemon.name}}</p>
             </div>
-            <div class="meat-container meat-text ">About me:<br><br>{{mainUser.meatQuote}}</div>
+
+            <div class="meat-container meat-text ">
+                About me:<br><br>
+                {{meatQuote}}
+            </div>
         </div>
+
         <div class="friends">
-            <h4>Friends</h4>
+            <h4>Friends ({{friends.length}})</h4>
             {{#each friends}}
-            <div class="friends-container">{{name.first}} {{name.last}}
-            </div>
+                <div class="friends-container">
+                    {{name.first}} {{name.last}}
+                </div>
             {{/each}}
         </div>
     </script>
