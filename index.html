@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>API Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
+</head>
+
+<body>
+    <script id="users-dropdown" type="text/x-handlebars-template">
+        {{#each data}}
+             <option value={{index}}>{{mainUser.name.first}} {{mainUser.name.last}}</option>
+       {{/each}}
+    </script>
+
+    <script id="user-template" type="text/x-handlebars-template">
+
+        <div class="user-container">
+            <img id="profile-pic" src="{{mainUser.picture.medium}}" alt="Profile picture">
+            <div class="user-info ">
+                {{mainUser.name.first}} {{mainUser.name.last}} <br>
+                {{mainUser.location.city}}, {{mainUser.location.country}}
+            </div>
+        </div>
+
+        <div class="quote-container">
+            {{quote}}
+        </div>
+
+        <div class="content-container">
+            <div class="pokemon-container">
+                <img src="{{pokemon.url}}" id="pokemon-image" alt="pokemon picture">
+                <p id="pokemon-text">{{pokemon.name}}</p>
+            </div>
+
+            <div class="meat-container meat-text ">
+                About me:<br><br>
+                {{meatQuote}}
+            </div>
+        </div>
+
+        <div class="friends">
+            <h4>Friends ({{friends.length}})</h4>
+            {{#each friends}}
+                <div class="friends-container">
+                    {{name.first}} {{name.last}}
+                </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <div class="container">
+    </div>
+
+    <div class="buttons">
+        <div class="user-select">
+            <label for="Users">Choose a user to display:</label>
+            <select name="Users" id="saved-users">
+            </select>
+            <button id="display-saved-btn">Load Saved User</button>
+        </div>
+        <button id="load-btn">Load User Data</button>
+        <button id="display-btn">Display User</button>
+        <button id="save-btn">Save User Data</button>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+    <script src="APIManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="Saver.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
